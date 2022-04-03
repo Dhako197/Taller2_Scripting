@@ -86,28 +86,119 @@ namespace Taller2_Scripting.Clases
         }
          public Card CrearCartaEquip( Card cad)
         {
-            var randomCP = new Random().Next(2, 6);
-            var randomEP = new Random().Next(1, 4);
-            var randomRare1 = new Random().Next(1, 5);
-            var randomRare2 = new Random().Next(1, 5);
-            var randomRare3 = new Random().Next(1, 5);
+            var randomCPK = new Random().Next(2, 6);
+            var randomCPM = new Random().Next(2, 6);
+            var randomCPU = new Random().Next(2, 6);
+            var randomEPK = new Random().Next(1, 4);
+            var randomEPM = new Random().Next(1, 4);
+            var randomEPU = new Random().Next(1, 4);
+            var randomRareK = new Random().Next(1, 5);
+            var randomRareM = new Random().Next(1, 5);
+            var randomRareU = new Random().Next(1, 5);
             var randomTAK = new Random().Next(1, 4);
             var randomTAM = new Random().Next(1, 4);
             var randomTAU = new Random().Next(1, 4);
 
             Equip eq1 = new Equip();
             Equip eq2 = new Equip();
-            Equip eq2 = new Equip();
+            Equip eq3 = new Equip();
 
-            eq1.CostPoint = randomCP;
-            eq1.affinity = affinity.Knight;
-            eq1.effectPoints = randomEP;
+            eq1.CostPoint = randomCPK;
+            eq1.affinity = Equip.Affinity.Knight;
+            eq1.effectPoints = randomEPK;
 
             switch (randomTAK)
             {
                 case 1:
                     eq1.targetAttribute = Equip.TargetAttribute.ALL;
+                    break;
+                case 2:
+                    eq1.targetAttribute = Equip.TargetAttribute.AP;
+                    break;
+                case 3:
+                    eq1.targetAttribute = Equip.TargetAttribute.RP;
+                    break;
             }
+            switch (randomRareK)
+            {
+                case 1:
+                    eq1.Rarety = Equip.lrarety.Common;
+                    break;
+                case 2:
+                    eq1.Rarety = Equip.lrarety.Rare;
+                    break;
+                case 3:
+                    eq1.Rarety = Equip.lrarety.SuperRare;
+                    break;
+                case 4:
+                    eq1.Rarety = Equip.lrarety.SuperRare;
+                    break;
+            }
+
+            eq2.CostPoint = randomCPM;
+            eq2.affinity = Equip.Affinity.Mage;
+            eq2.effectPoints = randomEPM;
+
+            switch (randomTAM)
+            {
+                case 1:
+                    eq2.targetAttribute = Equip.TargetAttribute.ALL;
+                    break;
+                case 2:
+                    eq2.targetAttribute = Equip.TargetAttribute.AP;
+                    break;
+                case 3:
+                    eq2.targetAttribute = Equip.TargetAttribute.RP;
+                    break;
+            }
+            switch (randomRareM)
+            {
+                case 1:
+                    eq2.Rarety = Equip.lrarety.Common;
+                    break;
+                case 2:
+                    eq2.Rarety = Equip.lrarety.Rare;
+                    break;
+                case 3:
+                    eq2.Rarety = Equip.lrarety.SuperRare;
+                    break;
+                case 4:
+                    eq2.Rarety = Equip.lrarety.SuperRare;
+                    break;
+            }
+
+            eq3.CostPoint = randomCPU;
+            eq3.affinity = Equip.Affinity.Undead;
+            eq3.effectPoints = randomEPU;
+
+            switch (randomTAU)
+            {
+                case 1:
+                    eq3.targetAttribute = Equip.TargetAttribute.ALL;
+                    break;
+                case 2:
+                    eq3.targetAttribute = Equip.TargetAttribute.AP;
+                    break;
+                case 3:
+                    eq3.targetAttribute = Equip.TargetAttribute.RP;
+                    break;
+            }
+            switch (randomRareU)
+            {
+                case 1:
+                    eq3.Rarety = Equip.lrarety.Common;
+                    break;
+                case 2:
+                    eq3.Rarety = Equip.lrarety.Rare;
+                    break;
+                case 3:
+                    eq3.Rarety = Equip.lrarety.SuperRare;
+                    break;
+                case 4:
+                    eq3.Rarety = Equip.lrarety.SuperRare;
+                    break;
+            }
+
 
         }
 
