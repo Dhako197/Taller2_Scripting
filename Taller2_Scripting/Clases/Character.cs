@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Taller2_Scripting.Clases
 {
-    public enum laffinitys { Knight, Mage, Undead }
-
+   
     class Character : Card
     {
+        public enum laffinitys { Knight, Mage, Undead }
+         
         private uint attackPoints;
         private uint resistPoints;
         private List<Equip> lequips;
