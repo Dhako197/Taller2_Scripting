@@ -84,7 +84,7 @@ namespace Taller2_Scripting.Clases
             }
 
         }
-         public Card CrearCartaEquip( Card cad)
+         public Card CrearCartaEquip( Card card)
         {
             var randomCPK = new Random().Next(2, 6);
             var randomCPM = new Random().Next(2, 6);
@@ -200,6 +200,18 @@ namespace Taller2_Scripting.Clases
             }
 
 
+        }
+
+        public Card CrearCartaSK(Card card)
+        {
+            SupportSkill SK = new SupportSkill();
+
+            Array values = Enum.GetValues(typeof(SupportSkill.EffectType));
+            Random random = new Random();
+            SupportSkill.EffectType randomSK = (SupportSkill.EffectType)values.GetValue(random.Next(values.Lenght));
+            Random randomEP = new Random(1, 4);
+            SK.CostPoint = randomEP;
+            
         }
 
         public Deck AgregarCartaAlDEck (Deck deck,Card card)

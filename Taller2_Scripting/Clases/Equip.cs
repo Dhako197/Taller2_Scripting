@@ -17,7 +17,7 @@ namespace Taller2_Scripting.Clases
         uint effectPoints;
         
 
-        public Character(string name, lrarety rarety, Affinity affinity,uint effectPoints, TargetAttribute targetAttribute) : base(name, rarety, costPoint)
+        public Equip(string name, lrarety rarety, Affinity affinity,uint effectPoints, TargetAttribute targetAttribute) : base(name, rarety, costPoint)
         {
             EfectPoints = effectPoints;
             TargetAttribute = targetAttribute;

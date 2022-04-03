@@ -9,11 +9,11 @@ namespace Taller2_Scripting.Clases
     internal class SupportSkill : Card
     {
         public enum EffectType { ReduceAP, ReduceRP, ReduceAll, DestroyEquip, RestoreRP }
-        private EffectType effectType;
+        public EffectType effectType;
 
         int effectPoints;
 
-        public Character(string name, lrarety rarety, EffectType effectType, int effectPoints) : base(name, rarety, costPoint)
+        public SuportSkill(string name, lrarety rarety, EffectType effectType, int effectPoints) : base(name, rarety, costPoint)
         {
             EfectPoints = effectPoints;
             EffectType = effectType;
