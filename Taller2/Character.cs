@@ -11,8 +11,8 @@ namespace Taller2
         public enum laffinitys { Knight, Mage, Undead }
 
 
-        private uint attackPoints;
-        private uint resistPoints;
+        private uint attackPoints = 0;
+        private uint resistPoints = 0;
         private List<Equip> lequips;
         private laffinitys affinity;
 
