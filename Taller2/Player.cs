@@ -40,21 +40,26 @@ namespace Taller2
             return deck;
         }
 
-        public Deck CrearDeck(uint costPoint)
-        {
-            List<Card> l_cards = new List<Card>();
-
-            Deck deck = new Deck(l_cards, costPoint);
-
-            return deck;
-
-        }
+       
 
         public Character CrearCharacter()
         {
             List<Equip> l_equips = new List<Equip>();
             Character michi_warrior = new Character("Michi Guerrero", Character.lrarety.UltraRare, 4, 5, 5, l_equips, Character.laffinitys.Knight);
             return michi_warrior;
+        }
+
+        public bool SepuedeAgregar(Deck deck, Card card)
+        {
+            if (deck.CostPoints > card.CostPoint)
+            {
+                return true;
+            }
+            else return false;
+
+
+
+
         }
 
     }
