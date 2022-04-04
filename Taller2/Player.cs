@@ -51,16 +51,30 @@ namespace Taller2
 
         public bool SepuedeAgregar(Deck deck, Card card)
         {
-            if (deck.CostPoints > card.CostPoint)
+            if (deck.CostPoints >= card.CostPoint)
             {
                 return true;
             }
             else return false;
 
+        }
+        public Deck CrearDeck(List<Card> cards)
+        {
+           
 
+            Deck deck = new Deck(cards, 45);
 
+            return deck;
 
         }
+        public Character UsarSupport(Character target, SupportSkill support)
+        {
+
+
+            return target;
+        }
+
+
 
     }
 }
