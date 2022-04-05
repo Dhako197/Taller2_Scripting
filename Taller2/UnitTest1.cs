@@ -34,7 +34,7 @@ namespace Taller2
             playerTest.AgregarCartaAlDeck(Deck1, michi_warrior);
 
             //Valor inicial debe ser mayor al valos de los costpoints despues de agregar la carta esto verifica que el deck esta limitado por los 
-            //cp y el cp del deck baja si meto una carta, tambien el metodo evalua si esta la cantidad maxima de characters,equips o supports
+            //cp y el cp del deck baja si meto una carta
             Assert.IsTrue(valor_inicial > Deck1.CostPoints);           
                 
         }
@@ -64,10 +64,73 @@ namespace Taller2
 
             prueba =playerTest.UsarSupport(prueba, support1);
 
+            //Equipamos 2 objetos al character y eliminamos uno, el resultado es que tenga menor cantidad de equipos que en el inicio
             Assert.IsTrue(prueba.Lequips.Count < equiposIniciales);
 
 
         }
+
+        [Test]
+        public void BarajaSoloHastaXCantidadPorTipoDeCarta()
+        {
+            Character prueba = playerTest.CrearCharacter1();
+            Deck1 = playerTest.CrearDeck(l_cards);
+            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+
+            int contadorInicial = Deck1.Lcards.Count;
+
+            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+
+            int contadorFinal= Deck1.Lcards.Count;
+
+            //Confirmamos que si tratamos de meter otro charapter no se pueda porque ya esta el maximo que en este caso es 5, se aplica la misma logica para los otros tipos de carta 
+            Assert.IsTrue(contadorInicial == contadorFinal);
+        
+        }
+
+        [Test]
+        public void ReduccionDeRpDespuesDeAtaQue()
+        {
+            Character character1= playerTest.CrearCharacter1();
+            Character character2 = playerTest.CrearCharacter1();
+
+            int valorInicialRP = character2.ResistPoints;
+            character2=character1.Atacar(character2);
+
+            //Cofirmamos que el rp de la carta defensora redujo su rp despues de efectuar el ataque
+            Assert.IsTrue(character2.ResistPoints < valorInicialRP);
+
+        }
+        [Test]
+        public void PersonajeDestrudioConCeroRp()
+        {
+            Character character1 = new Character("Gran Zombie", Character.lrarety.Rare, 6, 7, 7, l_equips, Character.laffinitys.Undead);
+            Character character2 = new Character("Mago igneo", Character.lrarety.Rare, 2, 1, 1, l_equips, Character.laffinitys.Mage);
+            character2= character1.Atacar(character2);
+            character2=playerTest.PuedeContinuar(character2);
+
+            //Dentro de la logica del juego pusimos que si la carta esta nula esta no se pueda usar
+            Assert.IsTrue(character2 == null);
+
+        }
+
+        [Test]
+        public void JugadorPuedeSeguirJugando()
+        {
+            Character character = null;
+            Character character2 = null;
+            l_cards.Add(character);
+            l_cards.Add(character2);
+            Deck1 = playerTest.CrearDeck(l_cards);
+            
+            //Al tener un mazo no disponible el juagdor no puede continuar jugando por ende pierde
+            Assert.IsFalse(playerTest.DeckDisponibleParaJugar(Deck1));
+        }
+
 
 
     }

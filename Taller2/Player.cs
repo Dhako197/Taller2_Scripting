@@ -192,43 +192,115 @@ namespace Taller2
             return target;
         }
 
-        /*public Character UsarEquipo(Character target, Equip equip)
+        public Character PuedeContinuar (Character character)
         {
-            if (target.Lequips.Count < 3 && target.Affinity.Equals(equip.Affinity1))
+            if(character.ResistPoints<=0) character=null; 
+            return character;
+        }
+
+        public bool DeckDisponibleParaJugar(Deck deck)
+        {
+            int cantidadCharacter = 0;
+            int cantidadEquip = 0;
+            int cantidadSupport = 0;
+
+            foreach (Card element in deck.Lcards)
             {
-                target.Lequips.Add(equip);
-                if(equip.TargetAttribute1 == Equip.TargetAttribute.ALL)
-                {
-                    target.AttackPoints += (int)equip.EffectPoints;
-                    target.ResistPoints +=(int)equip.EffectPoints;
-                }
-                else if(equip.TargetAttribute1 == Equip.TargetAttribute.RP) target.ResistPoints += (int)equip.EffectPoints;
-
-                else if(equip.TargetAttribute1 == Equip.TargetAttribute.AP) target.AttackPoints += (int)equip.EffectPoints;
-
+                if (element is Character&& element != null) cantidadCharacter++;
+                else if (element is Equip) cantidadEquip++;
+                else cantidadSupport++;
             }
+            if (cantidadCharacter == 0 || cantidadCharacter > 5 || cantidadEquip > 10 || cantidadSupport > 5) return false;
 
-            return target;
+            return true;
+
 
 
         }
 
-        public Character QuitarEquipo(Character target, Equip equip)
-        {
-            target.Lequips.RemoveAt(0);
+       public Card Gacha()
+       {
 
-            if (equip.TargetAttribute1 == Equip.TargetAttribute.ALL)
+          Random random = new Random();
+
+            int valorGacha = random.Next(1, 1001);
+
+            if(1<= valorGacha&& valorGacha <= 5)
             {
-                target.AttackPoints -= (int)equip.EffectPoints;
-                target.ResistPoints -= (int)equip.EffectPoints;
+                Character premioGacha = CrearCharacter1();
+                premioGacha.Rarety = Character.lrarety.UltraRare;
+                return premioGacha;
             }
-            else if (equip.TargetAttribute1 == Equip.TargetAttribute.RP) target.ResistPoints -= (int)equip.EffectPoints;
+            else if (5< valorGacha&& valorGacha <= 30)
+            {
+                Character premioGacha = CrearCharacter1();
+                premioGacha.Rarety = Character.lrarety.SuperRare;
+                return premioGacha;
+            }
+            else if (30 < valorGacha && valorGacha <= 80)
+            {
+                Character premioGacha = CrearCharacter1();
+                premioGacha.Rarety = Character.lrarety.Rare;
+                return premioGacha;
+            }
+            else if (80 < valorGacha && valorGacha <= 200)
+            {
+                Character premioGacha = CrearCharacter1();
+                premioGacha.Rarety = Character.lrarety.Common;
+                return premioGacha;
+            }
 
-            else if (equip.TargetAttribute1 == Equip.TargetAttribute.AP) target.AttackPoints -= (int)equip.EffectPoints;
+            else if (200 < valorGacha && valorGacha <= 205)
+            {
+                Equip premioGacha = CrearEquip();
+                premioGacha.Rarety = Equip.lrarety.UltraRare;
+                return premioGacha;
+            }
+            else if (205 < valorGacha && valorGacha <= 230)
+            {
+                Equip premioGacha = CrearEquip();
+                premioGacha.Rarety = Equip.lrarety.SuperRare;
+                return premioGacha;
+            }
+            else if (230 < valorGacha && valorGacha <= 300)
+            {
+                Equip premioGacha = CrearEquip();
+                premioGacha.Rarety = Equip.lrarety.Rare;
+                return premioGacha;
+            }
+            else if (300 < valorGacha && valorGacha <= 500)
+            {
+                Equip premioGacha = CrearEquip();
+                premioGacha.Rarety = Equip.lrarety.Common;
+                return premioGacha;
+            }
+            else if (500 < valorGacha && valorGacha <= 505)
+            {
+                SupportSkill premioGacha = CrearsupportSkill();
+                premioGacha.Rarety = SupportSkill.lrarety.UltraRare;
+                return premioGacha;
+            }
+            else if (505 < valorGacha && valorGacha <= 530)
+            {
+                SupportSkill premioGacha = CrearsupportSkill();
+                premioGacha.Rarety = SupportSkill.lrarety.SuperRare;
+                return premioGacha;
+            }
+            else if (530 < valorGacha && valorGacha <=730)
+            {
+                SupportSkill premioGacha = CrearsupportSkill();
+                premioGacha.Rarety = SupportSkill.lrarety.Rare;
+                return premioGacha;
+            }
+            else if (730 < valorGacha && valorGacha <= 1000)
+            {
+                SupportSkill premioGacha = CrearsupportSkill();
+                premioGacha.Rarety = SupportSkill.lrarety.Common;
+                return premioGacha;
+            }
+            return null;
 
-            return target;
         }
-        */
 
     }
 }

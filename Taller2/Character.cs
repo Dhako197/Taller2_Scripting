@@ -33,9 +33,14 @@ namespace Taller2
         public void UsarEquipo(Equip equip)
         {
             int contador = lequips.Count;
-            Equip.Affinity afinidadEquipo = equip.Affinity1;
+            
 
-            if (contador < 3 && !Affinity.Equals(afinidadEquipo))
+            string afinidadCaharcter = Affinity.ToString();
+            string afinidadEquip = equip.Affinity1.ToString();
+
+
+
+            if (contador < 3 && afinidadCaharcter.Equals(afinidadEquip)) 
             {
                Lequips.Add(equip);
                 if (equip.TargetAttribute1 == Equip.TargetAttribute.ALL)
@@ -66,6 +71,71 @@ namespace Taller2
 
            
         }
+
+        public Character  Atacar(Character target)
+        {
+
+            string afinidadCaharcter = Affinity.ToString();
+            string afinidadTarget = target.affinity.ToString();
+            string afinidadMage = Character.laffinitys.Mage.ToString();
+            string afinidadUndead = Character.laffinitys.Undead.ToString();
+            string afinidadKnight= Character.laffinitys.Knight.ToString();
+
+            if (afinidadCaharcter.Equals(afinidadTarget))
+            {
+                target.resistPoints -= AttackPoints;
+                ResistPoints -= target.AttackPoints;
+                return target;
+               
+            }
+            else if(afinidadCaharcter.Equals(afinidadMage)&& afinidadTarget.Equals(afinidadUndead))
+            {
+                target.resistPoints--;
+                target.resistPoints  -= (AttackPoints+1);
+                ResistPoints -= target.AttackPoints;
+                return target;
+            }
+            else if (afinidadCaharcter.Equals(afinidadMage) && afinidadTarget.Equals(afinidadKnight))
+            {
+                target.resistPoints -= AttackPoints;
+                ResistPoints--;
+                ResistPoints -= target.AttackPoints + 1;
+                return target;
+            }
+            else if (afinidadCaharcter.Equals(afinidadUndead) && afinidadTarget.Equals(afinidadMage))
+            {
+                target.resistPoints -= AttackPoints;
+                ResistPoints--;
+                ResistPoints -= target.AttackPoints +1;
+                return target;
+            }
+            else if (afinidadCaharcter.Equals(afinidadUndead) && afinidadTarget.Equals(afinidadKnight))
+            {
+                target.resistPoints--;
+                target.resistPoints -= (AttackPoints + 1);
+                ResistPoints -= target.AttackPoints;
+                return target;
+            }
+            else if (afinidadCaharcter.Equals(afinidadKnight) && afinidadTarget.Equals(afinidadMage))
+            {
+                target.resistPoints--;
+                target.resistPoints -= (AttackPoints + 1);
+                ResistPoints -= target.AttackPoints;
+                return target;
+            }
+            else if (afinidadCaharcter.Equals(afinidadKnight) && afinidadTarget.Equals(afinidadUndead))
+            {
+                target.resistPoints -= AttackPoints;
+                ResistPoints--;
+                ResistPoints -= target.AttackPoints + 1;
+                return target;
+            }
+
+            return target;
+
+        }
+
+
 
     }
 }
