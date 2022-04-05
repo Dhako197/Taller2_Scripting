@@ -1,5 +1,5 @@
 # Taller2_Scripting
-Taller2 desarrolado por:
+Taller2 desarrollado por:
 Daniel Jaramillo,
 Juan Jose Espitia,
 Juan Jose Rodas.
