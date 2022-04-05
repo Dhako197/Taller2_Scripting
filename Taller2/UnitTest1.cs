@@ -29,7 +29,7 @@ namespace Taller2
 
             Deck1 = playerTest.CrearDeck(l_cards);
             uint valor_inicial = Deck1.CostPoints;
-            Character michi_warrior = playerTest.CrearCharacter();
+            Character michi_warrior = playerTest.CrearCharacter1();
 
             playerTest.AgregarCartaAlDeck(Deck1, michi_warrior);
 
@@ -43,7 +43,7 @@ namespace Taller2
         public void CartaSoloSeAgregaSiHaySuficienteCP()
         {
             Deck1 = new Deck(l_cards, 0);
-            Character michi_warrior = playerTest.CrearCharacter();
+            Character michi_warrior = playerTest.CrearCharacter1();
 
             //Esta prueba verifica que no se pueda meter mas cartas si el cp es menor al cp de la carta
             Assert.IsFalse(playerTest.SepuedeAgregar(Deck1, michi_warrior));
@@ -52,6 +52,20 @@ namespace Taller2
         [Test]
         public void CartaSupportSoloDestruyeUnEquipo()
         {
+            Character prueba = playerTest.CrearCharacter();
+            SupportSkill support1 = new SupportSkill("Capa", SupportSkill.lrarety.Rare, 3, SupportSkill.l_EffectType.DestroyEquip, 0);
+            Equip equipo1 = new Equip("Casco", Equip.lrarety.Common, 2, Equip.TargetAttribute.ALL, Equip.Affinity.Knight, 2);
+            Equip equipo2 = new Equip("Casco", Equip.lrarety.Common, 2, Equip.TargetAttribute.ALL, Equip.Affinity.Knight, 2);
+            prueba.UsarEquipo(equipo1);
+           
+
+            int equiposIniciales = prueba.Lequips.Count;
+            
+
+            prueba =playerTest.UsarSupport(prueba, support1);
+
+            Assert.IsTrue(prueba.Lequips.Count == 0);
+
 
         }
 

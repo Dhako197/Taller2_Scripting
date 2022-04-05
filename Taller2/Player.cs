@@ -12,20 +12,24 @@ namespace Taller2
         public Character CrearCharacter1()
         {
             
-            Character charac = null;
+            Character charac;
+            Random randomName = new Random();
+            int numero= randomName.Next(26);
+            char letra = (char)(((int)'A') + numero);
+            string name = ("Charcter " + letra);
+
+            List<Equip> l_equips = new List<Equip>(3);
 
             Random randomAP = new Random();
-            uint rndAP = (uint)randomAP.Next(1,6);
+            int rndAP = randomAP.Next(1,6);
             Random randomRP = new Random();
-            uint rndRP = (uint)randomRP.Next(1,6);
+            int rndRP = randomRP.Next(1,6);
             Random randomCP = new Random();
             uint rndCP = (uint)randomCP.Next(1,6);
 
             
 
-            charac.AttackPoints = rndAP;
-            charac.ResistPoints = rndRP;
-            charac.CostPoint = rndCP;
+            
 
             Array valuesAffi = Enum.GetValues(typeof(Character.laffinitys));
             Random randomAffi = new Random();
@@ -35,20 +39,26 @@ namespace Taller2
             Random randomRare = new Random();
             Character.lrarety randomRarety = (Character.lrarety)randomRare.Next(valuesRare.Length);
 
+            charac = new Character(name, randomRarety, rndCP, rndAP, rndRP, l_equips, randomAffinity);
+
 
             return charac;
         }
         public Equip CrearEquip()
         {
-            Equip equip = null;
+            Equip equip;
+
+            Random randomName = new Random();
+            int numero = randomName.Next(26);
+            char letra = (char)(((int)'A') + numero);
+            string name = ("Charcter " + letra);
 
             Random randomEP = new Random();
             uint rndEP = (uint)randomEP.Next(1, 6);
             Random randomCP = new Random();
             uint rndCP = (uint)randomCP.Next(1, 6);
 
-            equip.EffectPoints = rndEP;
-            equip.CostPoint = rndCP;
+            
 
             Array valuesAffi = Enum.GetValues(typeof(Equip.Affinity));
             Random randomAffi = new Random();
@@ -62,11 +72,18 @@ namespace Taller2
             Random randomRare = new Random();
             Equip.lrarety randomRarety = (Equip.lrarety)randomRare.Next(valuesRare.Length);
 
+            equip = new Equip(name, randomRarety, rndCP, randomTargget, randomAffinity, rndEP);
+
             return equip;
         }
          public SupportSkill CrearsupportSkill()
         {
-            SupportSkill supportskill = null;
+            SupportSkill supportskill;
+
+            Random randomName = new Random();
+            int numero = randomName.Next(26);
+            char letra = (char)(((int)'A') + numero);
+            string name = ("Charcter " + letra);
 
             Random randomEP = new Random();
             int rndEP = (int)randomEP.Next(1, 6);
@@ -74,8 +91,7 @@ namespace Taller2
             Random randomCP = new Random();
             uint rndCP = (uint)randomCP.Next(1, 6);
 
-            supportskill.EffectPoints = rndEP;
-            supportskill.CostPoint = rndCP;
+            
 
             Array valuesEffect = Enum.GetValues(typeof(SupportSkill.l_EffectType));
             Random randomEff = new Random();
@@ -84,6 +100,8 @@ namespace Taller2
             Array valuesRare = Enum.GetValues(typeof(SupportSkill.lrarety));
             Random randomRare = new Random();
             SupportSkill.lrarety randomRarety = (SupportSkill.lrarety)randomRare.Next(valuesRare.Length);
+
+            supportskill = new SupportSkill(name, randomRarety, rndCP, randomEffect, rndEP);
 
             return supportskill;
         }
@@ -148,11 +166,68 @@ namespace Taller2
         }
         public Character UsarSupport(Character target, SupportSkill support)
         {
+            if (support.EffectType == SupportSkill.l_EffectType.DestroyEquip)
+            {
+                if (target.Lequips.Count > 0)
+                {
+                    QuitarEquipo(target, target.Lequips[0]);
+                    target.Lequips.Remove(target.Lequips[0]);
+                }
+            }
+            else if(support.EffectType == SupportSkill.l_EffectType.RestoreRP)
+            {
+                target.ResistPoints += support.EffectPoints;
 
+            }
+            else if(support.EffectType == SupportSkill.l_EffectType.ReduceAll)
+            {
+                target.ResistPoints -= support.EffectPoints;
+                target.AttackPoints -= support.EffectPoints;
+            }
+            else if(support.EffectType == SupportSkill.l_EffectType.ReduceRP)
+            {
+                target.ResistPoints-=support.EffectPoints;
+            }
 
             return target;
         }
 
+        /*public Character UsarEquipo(Character target, Equip equip)
+        {
+            if (target.Lequips.Count < 3 && target.Affinity.Equals(equip.Affinity1))
+            {
+                target.Lequips.Add(equip);
+                if(equip.TargetAttribute1 == Equip.TargetAttribute.ALL)
+                {
+                    target.AttackPoints += (int)equip.EffectPoints;
+                    target.ResistPoints +=(int)equip.EffectPoints;
+                }
+                else if(equip.TargetAttribute1 == Equip.TargetAttribute.RP) target.ResistPoints += (int)equip.EffectPoints;
+
+                else if(equip.TargetAttribute1 == Equip.TargetAttribute.AP) target.AttackPoints += (int)equip.EffectPoints;
+
+            }
+
+            return target;
+
+
+        }*/
+
+        public Character QuitarEquipo(Character target, Equip equip)
+        {
+            target.Lequips.RemoveAt(0);
+
+            if (equip.TargetAttribute1 == Equip.TargetAttribute.ALL)
+            {
+                target.AttackPoints -= (int)equip.EffectPoints;
+                target.ResistPoints -= (int)equip.EffectPoints;
+            }
+            else if (equip.TargetAttribute1 == Equip.TargetAttribute.RP) target.ResistPoints -= (int)equip.EffectPoints;
+
+            else if (equip.TargetAttribute1 == Equip.TargetAttribute.AP) target.AttackPoints -= (int)equip.EffectPoints;
+
+            return target;
+        }
 
 
     }

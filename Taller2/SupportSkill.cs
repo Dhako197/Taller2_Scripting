@@ -8,7 +8,7 @@ namespace Taller2
 {
     internal class SupportSkill : Card
     {
-        public enum l_EffectType { ReduceAP, ReduceRP, ReduceAll, DestroyEquip, RestoreRP }
+        public enum l_EffectType {ReduceRP, ReduceAll, DestroyEquip, RestoreRP }
 
         private l_EffectType effectType;
         private int effectPoints;
