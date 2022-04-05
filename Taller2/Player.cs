@@ -170,8 +170,8 @@ namespace Taller2
             {
                 if (target.Lequips.Count > 0)
                 {
-                    QuitarEquipo(target, target.Lequips[0]);
-                    target.Lequips.Remove(target.Lequips[0]);
+                    target.QuitarEquipo( target.Lequips[0]);
+                    //target.Lequips.Remove(target.Lequips[0]);
                 }
             }
             else if(support.EffectType == SupportSkill.l_EffectType.RestoreRP)
@@ -211,7 +211,7 @@ namespace Taller2
             return target;
 
 
-        }*/
+        }
 
         public Character QuitarEquipo(Character target, Equip equip)
         {
@@ -228,7 +228,7 @@ namespace Taller2
 
             return target;
         }
-
+        */
 
     }
 }

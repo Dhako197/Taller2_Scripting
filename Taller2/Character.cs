@@ -32,7 +32,10 @@ namespace Taller2
 
         public void UsarEquipo(Equip equip)
         {
-            if (Lequips.Count < 3 && Affinity.Equals(equip.Affinity1))
+            int contador = lequips.Count;
+            Equip.Affinity afinidadEquipo = equip.Affinity1;
+
+            if (contador < 3 && !Affinity.Equals(afinidadEquipo))
             {
                Lequips.Add(equip);
                 if (equip.TargetAttribute1 == Equip.TargetAttribute.ALL)

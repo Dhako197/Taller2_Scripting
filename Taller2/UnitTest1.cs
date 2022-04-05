@@ -57,14 +57,14 @@ namespace Taller2
             Equip equipo1 = new Equip("Casco", Equip.lrarety.Common, 2, Equip.TargetAttribute.ALL, Equip.Affinity.Knight, 2);
             Equip equipo2 = new Equip("Casco", Equip.lrarety.Common, 2, Equip.TargetAttribute.ALL, Equip.Affinity.Knight, 2);
             prueba.UsarEquipo(equipo1);
-           
+            prueba.UsarEquipo(equipo1);
 
             int equiposIniciales = prueba.Lequips.Count;
             
 
             prueba =playerTest.UsarSupport(prueba, support1);
 
-            Assert.IsTrue(prueba.Lequips.Count == 0);
+            Assert.IsTrue(prueba.Lequips.Count < equiposIniciales);
 
 
         }
