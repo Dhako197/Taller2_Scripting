@@ -75,15 +75,16 @@ namespace Taller2
         {
             Character prueba = playerTest.CrearCharacter1();
             Deck1 = playerTest.CrearDeck(l_cards);
-            playerTest.AgregarCartaAlDeck(Deck1, prueba);
-            playerTest.AgregarCartaAlDeck(Deck1, prueba);
-            playerTest.AgregarCartaAlDeck(Deck1, prueba);
-            playerTest.AgregarCartaAlDeck(Deck1, prueba);
-            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            Deck1 =playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            Deck1 = playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            Deck1 = playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            Deck1 = playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            Deck1 = playerTest.AgregarCartaAlDeck(Deck1, prueba);
+
 
             int contadorInicial = Deck1.Lcards.Count;
 
-            playerTest.AgregarCartaAlDeck(Deck1, prueba);
+            Deck1 =playerTest.AgregarCartaAlDeck(Deck1, prueba);
 
             int contadorFinal= Deck1.Lcards.Count;
 
